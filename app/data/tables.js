@@ -7,4 +7,4 @@ var tables = [
 	}
 ];
 
-module.exports = table;
+module.exports = tables;
