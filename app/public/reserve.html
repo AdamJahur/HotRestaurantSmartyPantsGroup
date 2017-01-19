@@ -94,7 +94,11 @@
 	var currentPage = window.location.origin;
 
 	$.post(currentPage + '/api/tables', newReservation, function(data) {
-		console.log(data);
+		if (data === true) {
+			alert("Your table has been reserved!");
+		} else {
+			alert("You were put on the waitlist");
+		};
 
 	});
 
