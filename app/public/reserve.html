@@ -78,31 +78,42 @@
 	</div>
 
 <script type="text/javascript">
+	var newReservation;
 
 	$('.submit').on('click', function () {
-	 	var newReservation = {
-	 	name: $('#name').val().trim(),
-	 	email: $('#email').val().trim(),
-	 	phone: $('#phone').val().trim(),
-	 	id: $('#id').val().trim(),
-	};
 
-	console.log(newReservation);
+		 	newReservation = {
+		 	"name": $('#name').val().trim(),
+		 	"email": $('#email').val().trim(),
+		 	"phone": $('#phone').val().trim(),
+		 	"id": $('#id').val().trim()
+		 };
+		
+		console.log(newReservation); 
+	
+	
+
+		var currentPage = window.location.origin;
+
+		$.post(currentPage + '/api/tables', newReservation, function(data) {
+			console.log(currentPage);
+			console.log(data);
+			if (data == "true") {
+				alert("Your table has been reserved!");
+			} else {
+				alert("You were put on the waitlist");
+			};
 
 	});
 
-	var currentPage = window.location.origin;
+			$('#name').val("");
+			$('#phone').val("");
+			$('#email').val("");
+			$('#uniqueID').val("");
 
-	$.post(currentPage + '/api/tables', newReservation, function(data) {
-		if (data === true) {
-			alert("Your table has been reserved!");
-		} else {
-			alert("You were put on the waitlist");
-		};
+return false;
 
-	});
-
-
+});
 </script>
 
 </body>
