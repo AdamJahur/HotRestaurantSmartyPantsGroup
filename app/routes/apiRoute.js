@@ -16,9 +16,11 @@ module.exports = function(app) {
 		if(tables.length <= 5){
 
 			tables.push(table);
+			return true;
 
 		} else{
 			waitlist.push(table);
+			return false;
 		}
 		res.end('Reservation added');
 	});
